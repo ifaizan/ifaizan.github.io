@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan Younus - DevOps Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #00ff00;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --border: #30363d;
+            --command: #ffa657;
+            --hover: #238636;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --text-muted: #6e7781;
+            --accent: #0969da;
+            --border: #d0d7de;
+            --command: #953800;
+            --hover: #1f883d;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover);
+            color: #fff;
+        }
+
+        .terminal-header {
+            background-color: var(--bg-secondary);
+            padding: 10px 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            border-bottom: none;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
+
+        .terminal-title {
+            color: var(--text-secondary);
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .terminal {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            padding: 30px;
+            min-height: 600px;
+        }
+
+        .intro {
+            margin-bottom: 30px;
+        }
+
+        .name {
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .role {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+            min-height: 27px;
+            height: 27px;
+        }
+
+        .location {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .prompt {
+            color: var(--accent);
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prompt::before {
+            content: '>';
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+
+        .output {
+            margin: 12px 0 12px 25px;
+            color: var(--text-secondary);
+        }
+
+        .intro-text {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            color: var(--command);
+        }
+
+        .tech-stack {
+            display: inline;
+            color: var(--text-muted);
+        }
+
+        .joke {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 3px solid var(--command);
+        }
+
+        .joke-title {
+            color: var(--command);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .joke-content {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-links a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a svg {
+            flex-shrink: 0;
+        }
+
+        .contact-links a:hover {
+            background-color: var(--accent);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+            color: var(--text-primary);
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .terminal {
+                padding: 20px;
+            }
+
+            .name {
+                font-size: 20px;
+            }
+
+            .role {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div></div>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">☀️</span>
+            </button>
+        </div>
+
+        <div class="terminal-header">
+            <div class="terminal-button red"></div>
+            <div class="terminal-button yellow"></div>
+            <div class="terminal-button green"></div>
+            <span class="terminal-title">faizan@devops:~$</span>
+        </div>
+
+        <div class="terminal">
+            <div class="intro">
+                <div class="name">Faizan Younus</div>
+                <div class="role" id="role-text"></div>
+                <div class="location">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 5px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    Köln, Germany
+                </div>
+            </div>
+
+            <div class="prompt">whoami</div>
+            <div class="output">
+                <p class="intro-text">
+                    DevOps & Cloud professional with <span class="highlight">6+ years of experience</span> delivering scalable,
+                    fault-tolerant, enterprise-grade cloud infrastructure.
+                </p>
+                <p class="intro-text">
+                    Currently diving into building smart <span class="highlight">Agentic AI systems</span> to automate infrastructure deployment and operations.
+                </p>
+            </div>
+
+            <div class="prompt">./skills --list</div>
+            <div class="output">
+                <p class="intro-text">
+                    Kubernetes • Docker • Helm • ArgoCD • Terraform • Crossplane • Azure • AWS •
+                    GitHub Actions • Azure DevOps • Ansible • Python • Bash • Linux •
+                    ELK Stack • Datadog • Agentic AI
+                </p>
+            </div>
+
+            <div class="prompt">cat /etc/reality.conf</div>
+            <div class="output">
+                <div class="joke">
+                    <div class="joke-title">// What they think I do:</div>
+                    <div class="joke-content">
+                        "You're a DevOps Engineer? So you just click buttons in Azure, right?"
+                    </div>
+                </div>
+                <div class="joke">
+                    <div class="joke-title">// What I actually do:</div>
+                    <div class="joke-content">
+                        <span class="highlight">DevOps</span> = Developer Oops!<br>
+                        <span class="highlight">CI/CD</span> = Can I/Can't Deploy<br>
+                        <span class="highlight">Kubernetes</span> = "It works on my cluster"<br>
+                        <span class="highlight">On-call</span> = Professional sleep interrupter
+                    </div>
+                </div>
+            </div>
+
+            <div class="prompt">ls ~/contact</div>
+            <div class="output">
+                <div class="contact-links">
+                    <a href="https://github.com/faizan-younus" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        github
+                    </a>
+                    <a href="https://www.linkedin.com/in/faizanyounus" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        linkedin
+                    </a>
+                    <a href="mailto:faizanyounus.work@gmail.com">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        email
+                    </a>
+                </div>
+            </div>
+
+            <div class="prompt"><span class="cursor">_</span></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = html.getAttribute('data-theme');
+
+            if (currentTheme === 'light') {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Typing animation for roles
+        const roles = [
+            'DevOps Engineer',
+            'Cloud Engineer',
+            'Site Reliability Engineer'
+        ];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeRole() {
+            const roleElement = document.getElementById('role-text');
+            const currentRole = roles[roleIndex];
+
+            if (!isDeleting) {
+                roleElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === currentRole.length) {
+                    isDeleting = true;
+                    typingSpeed = 2000;
+                } else {
+                    typingSpeed = 100;
+                }
+            } else {
+                roleElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typingSpeed = 500;
+                } else {
+                    typingSpeed = 50;
+                }
+            }
+
+            setTimeout(typeRole, typingSpeed);
+        }
+
+        // Load saved theme and start typing animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+            }
+
+            // Start typing animation
+            typeRole();
+        });
+    </script>
+</body>
+</html>
