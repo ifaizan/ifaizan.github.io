@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faizan Younus - DevOps Engineer</title>
+    <meta name="description" content="Faizan Younus — DevOps & Cloud Engineer based in Köln, Germany. 7+ years building scalable, enterprise-grade cloud infrastructure.">
+    <title>Faizan Younus — DevOps Engineer</title>
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="512x512" href="fznys-512.png">
+    <link rel="apple-touch-icon" href="fznys-512.png">
+    <meta name="theme-color" content="#0a0a0c">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,216 +20,115 @@
         }
 
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --text-primary: #00ff00;
-            --text-secondary: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --border: #30363d;
-            --command: #ffa657;
-            --hover: #238636;
+            --bg: #0a0a0c;
+            --bg-subtle: #121216;
+            --text: #ededf0;
+            --text-secondary: #a0a0ab;
+            --text-muted: #6b6b76;
+            --accent: #4ade80;
+            --accent-dim: rgba(74, 222, 128, 0.12);
+            --border: #232329;
+            --chip-bg: #16161b;
         }
 
-        [data-theme="light"] {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f6f8fa;
-            --text-primary: #24292f;
-            --text-secondary: #57606a;
-            --text-muted: #6e7781;
-            --accent: #0969da;
-            --border: #d0d7de;
-            --command: #953800;
-            --hover: #1f883d;
+        ::selection {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-primary);
+            background-color: var(--bg);
             color: var(--text-secondary);
-            font-family: 'Courier New', monospace;
-            padding: 20px;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 680px;
             margin: 0 auto;
+            padding: 0 24px;
         }
 
-        .header {
+        /* ---------- Nav ---------- */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 32px 0;
+        }
+
+        .nav-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .nav-brand span {
+            color: var(--accent);
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 72px 0 64px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        .status::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        h1 {
+            color: var(--text);
+            font-size: clamp(34px, 6vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .role-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            color: var(--accent);
+            min-height: 29px;
             margin-bottom: 20px;
         }
 
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            transition: all 0.3s;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-
-        .theme-toggle:hover {
-            background: var(--hover);
-            color: #fff;
-        }
-
-        .terminal-header {
-            background-color: var(--bg-secondary);
-            padding: 10px 15px;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--border);
-            border-bottom: none;
-        }
-
-        .terminal-button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .red { background-color: #ff5f56; }
-        .yellow { background-color: #ffbd2e; }
-        .green { background-color: #27c93f; }
-
-        .terminal-title {
-            color: var(--text-secondary);
-            margin-left: 10px;
-            font-size: 14px;
-        }
-
-        .terminal {
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 0 0 8px 8px;
-            padding: 30px;
-            min-height: 600px;
-        }
-
-        .intro {
-            margin-bottom: 30px;
-        }
-
-        .name {
-            color: var(--accent);
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .role {
-            color: var(--text-primary);
-            font-size: 18px;
-            margin-bottom: 15px;
-            min-height: 27px;
-            height: 27px;
-        }
-
-        .location {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .prompt {
-            color: var(--accent);
-            margin-top: 25px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .prompt::before {
-            content: '>';
-            color: var(--text-primary);
-            font-weight: bold;
-        }
-
-        .output {
-            margin: 12px 0 12px 25px;
-            color: var(--text-secondary);
-        }
-
-        .intro-text {
-            margin-bottom: 15px;
-            color: var(--text-secondary);
-        }
-
-        .highlight {
-            color: var(--command);
-        }
-
-        .tech-stack {
-            display: inline;
-            color: var(--text-muted);
-        }
-
-        .joke {
-            background: var(--bg-secondary);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 15px;
-            border-left: 3px solid var(--command);
-        }
-
-        .joke-title {
-            color: var(--command);
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .joke-content {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .contact-links {
-            margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .contact-links a {
-            color: var(--accent);
-            text-decoration: none;
-            padding: 10px 18px;
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-links a svg {
-            flex-shrink: 0;
-        }
-
-        .contact-links a:hover {
-            background-color: var(--accent);
-            color: var(--bg-primary);
-            transform: translateY(-2px);
-        }
-
         .cursor {
-            animation: blink 1s infinite;
-            color: var(--text-primary);
+            animation: blink 1s step-end infinite;
+            font-weight: 400;
         }
 
         @keyframes blink {
@@ -229,130 +136,403 @@
             51%, 100% { opacity: 0; }
         }
 
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--text-muted);
+            font-size: 14.5px;
+        }
+
+        .location svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        /* ---------- Sections ---------- */
+        section {
+            padding: 0 0 64px;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: lowercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before {
+            content: '#';
+            color: var(--accent);
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .about p {
+            margin-bottom: 16px;
+            max-width: 60ch;
+        }
+
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ---------- Skills ---------- */
+        .skill-group {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 16px;
+            align-items: baseline;
+            margin-bottom: 18px;
+        }
+
+        .skill-group-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            background: var(--chip-bg);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 6px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .chip:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        /* ---------- kubectl card ---------- */
+        .kubectl {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+        }
+
+        .kubectl-cmd {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-subtle);
+            color: var(--text);
+        }
+
+        .kubectl-cmd::before {
+            content: '$ ';
+            color: var(--accent);
+        }
+
+        .kubectl-body {
+            padding: 18px 20px;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 8px 20px;
+        }
+
+        .kubectl-body .k {
+            color: var(--text-muted);
+        }
+
+        .kubectl-body .k::after {
+            content: ':';
+        }
+
+        .kubectl-body .v {
+            color: var(--text-secondary);
+        }
+
+        .kubectl-body .v .ok {
+            color: var(--accent);
+        }
+
+        .kubectl-body .v .dim {
+            color: var(--text-muted);
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            padding: 11px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+        }
+
+        .contact-links a svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .contact-links .arrow {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 0 48px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        footer .uptime {
+            color: var(--accent);
+        }
+
+        /* ---------- Reveal animation ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            animation: reveal 0.6s ease forwards;
+        }
+
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal:nth-child(2) { animation-delay: 0.08s; }
+        .reveal:nth-child(3) { animation-delay: 0.16s; }
+        .reveal:nth-child(4) { animation-delay: 0.24s; }
+        .reveal:nth-child(5) { animation-delay: 0.32s; }
+        .reveal:nth-child(6) { animation-delay: 0.40s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+            .status::before, .cursor {
+                animation: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 48px 0 56px;
             }
 
-            .terminal {
-                padding: 20px;
+            section {
+                padding-bottom: 52px;
             }
 
-            .name {
-                font-size: 20px;
+            .skill-group {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                margin-bottom: 24px;
             }
 
-            .role {
-                font-size: 16px;
+            .kubectl-body {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+
+            .kubectl-body .v {
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div></div>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span id="theme-icon">☀️</span>
-            </button>
-        </div>
+        <nav class="reveal">
+            <div class="nav-brand"><span>~</span>/fznys</div>
+        </nav>
 
-        <div class="terminal-header">
-            <div class="terminal-button red"></div>
-            <div class="terminal-button yellow"></div>
-            <div class="terminal-button green"></div>
-            <span class="terminal-title">faizan@devops:~$</span>
-        </div>
+        <header class="hero reveal">
+            <div class="status">accepting new workloads</div>
+            <h1>Faizan Younus</h1>
+            <div class="role-line"><span id="role-text"></span><span class="cursor">▍</span></div>
+            <div class="location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Köln, Germany
+            </div>
+        </header>
 
-        <div class="terminal">
-            <div class="intro">
-                <div class="name">Faizan Younus</div>
-                <div class="role" id="role-text"></div>
-                <div class="location">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 5px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    Köln, Germany
+        <section class="about reveal">
+            <div class="section-label">about</div>
+            <p>
+                DevOps &amp; Cloud professional with <strong>7+ years of experience</strong> delivering
+                scalable, fault-tolerant, enterprise-grade cloud infrastructure.
+            </p>
+            <p>
+                Currently diving into building smart <strong>Agentic AI systems</strong> to automate
+                infrastructure deployment and operations.
+            </p>
+        </section>
+
+        <section class="reveal">
+            <div class="section-label">skills</div>
+            <div class="skill-group">
+                <div class="skill-group-name">containers</div>
+                <div class="chips">
+                    <span class="chip">Kubernetes</span>
+                    <span class="chip">Docker</span>
+                    <span class="chip">Helm</span>
                 </div>
             </div>
-
-            <div class="prompt">whoami</div>
-            <div class="output">
-                <p class="intro-text">
-                    DevOps & Cloud professional with <span class="highlight">7+ years of experience</span> delivering scalable,
-                    fault-tolerant, enterprise-grade cloud infrastructure.
-                </p>
-                <p class="intro-text">
-                    Currently diving into building smart <span class="highlight">Agentic AI systems</span> to automate infrastructure deployment and operations.
-                </p>
-            </div>
-
-            <div class="prompt">./skills --list</div>
-            <div class="output">
-                <p class="intro-text">
-                    Kubernetes • Docker • Helm • ArgoCD • Terraform • Crossplane • Azure • AWS •
-                    GitHub Actions • Azure DevOps • Ansible • Python • Bash • Linux •
-                    ELK Stack • Datadog • Agentic AI
-                </p>
-            </div>
-
-            <div class="prompt">cat /etc/reality.conf</div>
-            <div class="output">
-                <div class="joke">
-                    <div class="joke-title">// What they think I do:</div>
-                    <div class="joke-content">
-                        "You're a DevOps Engineer? So you just click buttons in Azure, right?"
-                    </div>
-                </div>
-                <div class="joke">
-                    <div class="joke-title">// What I actually do:</div>
-                    <div class="joke-content">
-                        <span class="highlight">DevOps</span> = Developer Oops!<br>
-                        <span class="highlight">CI/CD</span> = Can I/Can't Deploy<br>
-                        <span class="highlight">Kubernetes</span> = "It works on my cluster"<br>
-                        <span class="highlight">On-call</span> = Professional sleep interrupter
-                    </div>
+            <div class="skill-group">
+                <div class="skill-group-name">infra-as-code</div>
+                <div class="chips">
+                    <span class="chip">Terraform</span>
+                    <span class="chip">Crossplane</span>
                 </div>
             </div>
-
-            <div class="prompt">ls ~/contact</div>
-            <div class="output">
-                <div class="contact-links">
-                    <a href="https://github.com/faizan-younus" target="_blank">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        github
-                    </a>
-                    <a href="https://www.linkedin.com/in/faizanyounus" target="_blank">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        linkedin
-                    </a>
-                    <a href="mailto:faizanyounus.work@gmail.com">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        email
-                    </a>
+            <div class="skill-group">
+                <div class="skill-group-name">config mgmt</div>
+                <div class="chips">
+                    <span class="chip">Ansible</span>
                 </div>
             </div>
+            <div class="skill-group">
+                <div class="skill-group-name">cloud</div>
+                <div class="chips">
+                    <span class="chip">Azure</span>
+                    <span class="chip">AWS</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-name">ci/cd &amp; gitops</div>
+                <div class="chips">
+                    <span class="chip">GitHub Actions</span>
+                    <span class="chip">Azure DevOps</span>
+                    <span class="chip">ArgoCD</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-name">os</div>
+                <div class="chips">
+                    <span class="chip">macOS</span>
+                    <span class="chip">Debian</span>
+                    <span class="chip">RedHat</span>
+                    <span class="chip">Ubuntu</span>
+                    <span class="chip">CentOS</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-name">languages</div>
+                <div class="chips">
+                    <span class="chip">Python</span>
+                    <span class="chip">Bash</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-name">observability</div>
+                <div class="chips">
+                    <span class="chip">ELK Stack</span>
+                    <span class="chip">Datadog</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-name">exploring</div>
+                <div class="chips">
+                    <span class="chip">Agentic AI</span>
+                </div>
+            </div>
+        </section>
 
-            <div class="prompt"><span class="cursor">_</span></div>
-        </div>
+        <section class="reveal">
+            <div class="section-label">runtime</div>
+            <div class="kubectl">
+                <div class="kubectl-cmd">kubectl describe pod/fznys -n production</div>
+                <div class="kubectl-body">
+                    <span class="k">Status</span>
+                    <span class="v"><span class="ok">Running</span></span>
+                    <span class="k">Uptime</span>
+                    <span class="v">7+ years, zero downtime</span>
+                    <span class="k">Restarts</span>
+                    <span class="v">4 <span class="dim">(coffee machine outages)</span></span>
+                    <span class="k">Liveness Probe</span>
+                    <span class="v">espresso every 4h — <span class="ok">200 OK</span></span>
+                    <span class="k">Tolerations</span>
+                    <span class="v">legacy-yaml, 3am-pages, "quick call?"</span>
+                    <span class="k">Events</span>
+                    <span class="v"><span class="dim">&lt;none&gt; — a perfect day</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="section-label">contact</div>
+            <div class="contact-links">
+                <a href="https://github.com/faizan-younus" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    github <span class="arrow">↗</span>
+                </a>
+                <a href="https://www.linkedin.com/in/faizanyounus" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    linkedin <span class="arrow">↗</span>
+                </a>
+                <a href="mailto:faizanyounus.work@gmail.com">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    email <span class="arrow">↗</span>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <span>© <span id="year"></span> fznys</span>
+            <span class="uptime">uptime: 7+ years, 99.99% SLA</span>
+        </footer>
     </div>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            const currentTheme = html.getAttribute('data-theme');
-
-            if (currentTheme === 'light') {
-                html.removeAttribute('data-theme');
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                html.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
-        // Typing animation for roles
         const roles = [
             'DevOps Engineer',
             'Cloud Engineer',
@@ -373,9 +553,9 @@
 
                 if (charIndex === currentRole.length) {
                     isDeleting = true;
-                    typingSpeed = 2000;
+                    typingSpeed = 2200;
                 } else {
-                    typingSpeed = 100;
+                    typingSpeed = 90;
                 }
             } else {
                 roleElement.textContent = currentRole.substring(0, charIndex - 1);
@@ -386,24 +566,15 @@
                     roleIndex = (roleIndex + 1) % roles.length;
                     typingSpeed = 500;
                 } else {
-                    typingSpeed = 50;
+                    typingSpeed = 45;
                 }
             }
 
             setTimeout(typeRole, typingSpeed);
         }
 
-        // Load saved theme and start typing animation
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('theme-icon');
-
-            if (savedTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '🌙';
-            }
-
-            // Start typing animation
+            document.getElementById('year').textContent = new Date().getFullYear();
             typeRole();
         });
     </script>
